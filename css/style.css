@@ -236,23 +236,22 @@ spanmt2 {
     padding: 1rem 2.8rem;
     background: var(--social-color5);
     border-radius: 4rem;
-    box-shadow: 0 0 2rem var(--social-color5);
+    box-shadow: 0 0 3rem var(--social-color5);
     font-size: 1.6rem;
     color: var(--second-bg-color);
     letter-spacing: .1rem;
     font-weight: 600;
     transition: .5s ease;
+    
 }
 
-.btn5 :hover {
+.btn5:hover {
     box-shadow: none;
 }
 
 .btn5 i {
     font-size: 28px;
-    /* bigger size */
-    vertical-align: middle;
-    /* keeps it aligned nicely */
+    vertical-align: middle;  
 }
 
 
