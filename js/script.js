@@ -92,9 +92,9 @@ const typed = new Typed('.multiple-text', {
      loop: true
 });
 const typed2 = new Typed('.multiple-text2', {
-     strings: ['GRAPHIC DESIGNS','MARKETING ADDS','VFX EDITS','VIDEO EDITS','SOCIAL MEDIA POST','MUSIC VIDEOS'], 
-     typeSpeed: 80,
-     backSpeed: 60,
-     backDelay: 1000,
-     loop: true
+  strings: ['DESIGNS','MARKETING','ADVERTISE','COMMERCIAL','VFX EDITS','VIDEO EDITS','SOCIAL MEDIA','MUSIC VIDEOS','THUMBNAILS','POSTS','CONTENTS','WEB','GAMING','YOUTUBE'],
+  typeSpeed: 80,
+  backSpeed: 60,
+  backDelay: 1500,
+  loop: true
 });
