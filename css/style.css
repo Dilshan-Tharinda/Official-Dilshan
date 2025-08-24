@@ -25,6 +25,7 @@
     --social-color2: rgb(255, 255, 255);
     --social-color3: rgb(255, 217, 0);
 
+    --social-color9:#eeff00;
     --social-color4: #ffecec;
     --social-color5: #25d366;
     --social-color7: #ffffff;
@@ -159,24 +160,17 @@ section {
 /* Navbar Links */
 .navbar a {
     font-size: 1.7rem;
+    font-weight: 500;
     color: var(--text-color);
     margin-left: 4rem;
     text-decoration: none;
     transition: 0.3s;
 }
 
-.navbar a:hover,
-.navbar a.active {
-    color: var(--main-color);
+.navbar a:hover{
+    color: var(--social-color9);
 }
 
-.navbar a {
-    font-size: 1.7rem;
-    color: var(--text-color);
-    margin-left: 4rem;
-}
-
-.navbar a:hover,
 .navbar a.active {
     color: var(--main-color);
 }
@@ -241,6 +235,7 @@ span11 {
 :root {
     --social-color3: linear-gradient(125deg,
 
+                    
             #ff0000,
             #ee5a5a,
             #ff8000,
@@ -248,7 +243,7 @@ span11 {
             #ffee00,
             #f3e852,
             #07ff59,
-            #56f88c);
+            #ffffff);
 }
 
 .spanmt2 {
@@ -411,7 +406,13 @@ span11 {
 
 .heading {
     text-align: center;
-    font-size: 4.5rem;
+    text-align: top;
+    font-size: 6rem;
+}
+
+.heading-24 {
+    text-align: center;
+    font-size: 5.5rem;    
 }
 
 .about-content h2 {
@@ -482,6 +483,13 @@ span11 {
 }
 
 .portfolio h2 {
+    margin-top: 0rem;
+    margin-bottom: 4rem;
+
+}
+
+.portfolio-mt .heading-24 h2{
+    text-align: center;
     margin-bottom: 4rem;
 }
 
