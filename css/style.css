@@ -29,6 +29,7 @@
     --social-color4: #ffecec;
     --social-color5: #25d366;
     --social-color7: #ffffff;
+    --social-color22:#ffffff;
 
     --van-color: #1b1519;
     --van-color2: #2e292c;
@@ -56,24 +57,7 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 9%;
-    background: var(--van-color3);
-    display: flex;
-    justify-content: space-between;
-    z-index: 100;
-}
-
-.header.sticky {
-    border-bottom: .1rem solid rgba(0, 0, 0, .2);
-}
-
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 2rem 9%;
+    padding: 1.6rem 9%;
     background: var(--van-color3);
     display: flex;
     justify-content: space-between;
@@ -129,7 +113,7 @@ section {
     height: 100%;
     border-radius: 50%;
     animation: spin 4s linear infinite, glow 4s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(255, 217, 0, 0.185);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185);
 }
 
 .element {
@@ -159,7 +143,7 @@ section {
 
 /* Navbar Links */
 .navbar a {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 500;
     color: var(--text-color);
     margin-left: 4rem;
@@ -179,6 +163,59 @@ section {
     font-size: 3.6rem;
     color: var(--text-color);
     display: none;
+}
+
+.greeting1 {
+  font-size: 2rem;
+  font-weight: 550;
+  display: flex;
+  gap: 3px;
+}
+
+.greeting {
+  font-size: 2.7rem;
+  font-weight: 550;
+  display: flex;
+  gap: 2px;
+}
+
+.greeting .letter {
+  display: inline-block;
+  opacity: 0;
+}
+
+/* Inner span for float and gradient */
+.greeting .letter .float-wrap {
+  display: inline-block;
+  transform: translateY(0);
+  background: linear-gradient(90deg,
+    #ff0000, #ff9900, #33ff66, #00ccff, #cc33ff, #ffcc00, #ff0000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400% auto;
+  animation: gradientWave 6s linear infinite;
+}
+
+/* Intro bounce */
+@keyframes letterBounce {
+  0% { opacity: 0; transform: translateY(30px) scale(0.8); }
+  60% { opacity: 1; transform: translateY(-15px) scale(1.05); }
+  80% { transform: translateY(5px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Continuous float */
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(var(--floatAmount, -5px)); }
+}
+
+/* Gradient wave */
+@keyframes gradientWave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .home {
@@ -229,7 +266,7 @@ span7 {
 }
 
 span11 {
-    color: var(--social-color7);
+    color: var(--social-color22);
 }
 
 :root {
@@ -373,7 +410,6 @@ span11 {
     padding: 1rem 2.8rem;
     background: var(--social-color5);
     border-radius: 4rem;
-    box-shadow: 0 0 3rem var(--social-color5);
     font-size: 1.6rem;
     color: var(--second-bg-color);
     letter-spacing: .1rem;
@@ -410,9 +446,10 @@ span11 {
     font-size: 6rem;
 }
 
-.heading-24 {
+.heading24 {
     text-align: center;
-    font-size: 5.5rem;    
+    text-align: top;
+    font-size: 5rem;    
 }
 
 .about-content h2 {
@@ -488,10 +525,6 @@ span11 {
 
 }
 
-.portfolio-mt .heading-24 h2{
-    text-align: center;
-    margin-bottom: 4rem;
-}
 
 .portfolio-container {
     display: grid;
@@ -545,9 +578,15 @@ span11 {
     transition: .5s ease;
 }
 
-.portfolio-box:hover .portfolio-layer {
-    transform: translateY(0);
+.portfolio-box .portfolio-layer {
+    transform: translateY(100%); /* hidden by default */
+    transition: transform 0.4s ease-in-out; /* smooth effect */
 }
+
+.portfolio-box:hover .portfolio-layer {
+    transform: translateY(0); /* slide up on hover */
+}
+
 
 .portfolio-layer h4 {
     font-size: 3rem;
@@ -558,15 +597,43 @@ span11 {
     margin: .3rem 0 1rem;
 }
 
-.portfolio-layer a {
+.portfolio-layer a { 
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
     background: var(--text-color);
     border-radius: 50%;
+    color: var(--bg-color); /* icon color */
+    font-size: 2.5rem; /* icon size */
+    transition: all 0.3s ease;
 }
+
+.portfolio-layer a:hover {
+    background: var(--main-color);
+    transform: scale(1.1) rotate(8deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Bounce animation fix */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-12px);
+  }
+  60% {
+    transform: translateY(-6px);
+  }
+}
+
+.bx-bounce {
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
 
 .portfolio-layer a i {
     font-size: 2rem;
@@ -577,73 +644,205 @@ span11 {
     margin-bottom: 3rem;
 }
 
+
+
+
+
+
+
+
+
+
+
+/* Contact Form Container */
 .contact form {
     max-width: 70rem;
-    margin: 1rem auto;
+    margin: 1rem auto 3rem auto;
     text-align: center;
-    margin-bottom: 3rem;
 }
 
+/* Input Boxes */
 .contact form .input-box {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
+/* Inputs and Textarea */
 .contact form .input-box input,
 .contact form textarea {
     width: 100%;
     padding: 1.5rem;
     font-size: 1.6rem;
-    color: var(--text-color);
-    background: var(--my-color);
-    border-radius: .8rem;
-    margin: .7rem 0;
+    color: var(--text-color, #333);
+    background: var(--my-color, #f4f4f4);
+    border-radius: 0.8rem;
+    margin: 0.7rem 0;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
+/* Focus Effect */
+.contact form .input-box input:focus,
+.contact form textarea:focus {
+    border-color: #ff4d6d;
+    box-shadow: 0 0 8px rgba(255, 77, 109, 0.4);
+}
+
+/* Half Width for Inputs */
 .contact form .input-box input {
     width: 49%;
 }
 
+/* Textarea */
 .contact form textarea {
     resize: none;
 }
 
+/* Buttons */
 .contact form .btn5 {
     margin-top: 2rem;
     cursor: pointer;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 2rem 9%;
-    background: var(--my-color);
-}
-
-.footer-text p {
-    font-size: 1.6rem;
-}
-
-.footer-iconTop a {
     display: inline-flex;
+    align-items: center;
     justify-content: center;
-    padding: .8rem;
-    background: var(--main-color);
-    border-radius: .8rem;
-    transition: .5s ease;
+    gap: 20px;
+    padding: 1.2rem 2rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 1rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-.footer-iconTop a:hover {
-    box-shadow: 0 0 1rem var(--main-color);
+/* WhatsApp Button */
+#whatsappBtn {
+    background: #25d366;
 }
 
-.footer-iconTop a i {
-    font-size: 2.4rem;
-    color: var(--second-bg-color);
+#whatsappBtn:hover {
+    background: #1ebe5b;
+    transform: scale(1.05);
 }
+
+/* Email Button */
+#emailBtn {
+    background: #3fd6fc;
+}
+
+#emailBtn:hover {
+    background: #3fd6fc;
+    transform: scale(1.05);
+}
+
+/* SMS Button */
+#smsBtn {
+    background: #f39c12;
+}
+
+#smsBtn:hover {
+    background: #d68910;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact form .input-box {
+        flex-direction: column;
+    }
+
+    .contact form .input-box input {
+        width: 100%;
+    }
+
+    .contact form .btn5 {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* ===== Button Hover Colors & Responsive Gap ===== */
+
+/* Default: Horizontal buttons with gap */
+.contact form .btn5 {
+    margin-top: 2rem;
+    margin-right: 1.5rem; /* gap between buttons */
+}
+
+/* Remove right margin for last button */
+.contact form .btn5:last-child {
+    margin-right: 0;
+}
+
+/* WhatsApp Button Hover */
+#whatsappBtn:hover {
+    background: #1ebf5c;
+    transform: scale(1.05);
+}
+
+/* Email Button Hover */
+#emailBtn:hover {
+    background: #2bb7e3;
+    transform: scale(1.05);
+}
+
+/* SMS Button Hover */
+#smsBtn:hover {
+    background: #e08e0f;
+    transform: scale(1.05);
+}
+
+/* Mobile: stack buttons vertically */
+@media (max-width: 768px) {
+    .contact form .btn5 {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem; /* spacing between stacked buttons */
+    }
+
+    .contact form .btn5:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 * {
     margin: 0;
@@ -667,10 +866,12 @@ body {
 
 .logos {
     overflow: hidden;
-    padding: 60px 0;
+    padding: 20px 0;   /* reduce vertical spacing */
     background: #1b1519;
-    position: relative;
+    position: relative; /* remove sticky so it behaves normally */
+    margin-top: -200px;  /* pull logos closer to the contact form button */
 }
+
 
 .logos-slide {
     display: flex;
@@ -710,6 +911,37 @@ body {
 .logos::after {
     right: 0;
     background: linear-gradient(to right, transparent, #1b1519);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--my-color);
+}
+
+.footer-text p {
+    font-size: 1.6rem;
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
+    transition: .5s ease;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: var(--second-bg-color);
 }
 
 @media (max-width: 1200px) {
