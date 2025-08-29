@@ -869,7 +869,7 @@ body {
     padding: 20px 0;   /* reduce vertical spacing */
     background: #1b1519;
     position: relative; /* remove sticky so it behaves normally */
-    margin-top: -200px;  /* pull logos closer to the contact form button */
+    margin-top: -10px;  /* pull logos closer to the contact form button */
 }
 
 
